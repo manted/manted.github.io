@@ -5,13 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Website</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        (function( $ ) {
+        var ajaxscript = { ajax_url : 'http://localhost:10004/wp-admin/admin-ajax.php' }
+        $.ajax({
+            url : ajaxscript.ajax_url,
+            data : {
+                action : 'zendesk_convert_to_ticket_post',
+                comment_id : 1
+            },
+            method : 'POST', //Post method
+            success : function( response ){ console.log(response) },
+            error : function(error){ console.log(error) }
+        })
+        })(jQuery)
+    </script>
   </head>
   <body>
     <main>
         <h1>Welcome to My Website</h1>  
         <p>This is my new website which is hosted on GitHub Pages!</p>
     </main>
-    <script>
+    <!-- <script>
         fetch('http://localhost:10004/wp-admin/admin-ajax.php', {
             method: 'POST',
             headers: new Headers({
@@ -19,6 +35,6 @@
             }),
             body: 'action=zendesk_convert_to_ticket_post&comment_id=1'
         }).then(response => response.text()).then(result => console.log(result)).catch(error => console.log('error', error));
-    </script>
+    </script> -->
   </body>
 </html>
